@@ -1,0 +1,3 @@
+-- First Test File fist_test.tirac --
+
+variable = 1 + 2 - 3 * 4 / 5
