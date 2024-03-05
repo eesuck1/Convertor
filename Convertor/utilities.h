@@ -15,6 +15,10 @@
 
 static const string punctuation = { "!#$%&'()*+,-/:;<=>?@[\\]^`{|}~", 30 };
 static const string whitespace = { " \t\n\r\v\f", 7 };
+static const string latin_lower_alphabet = { "abcdefghijklmnopqrstuvwxyz", 27 };
+static const string latin_upper_alphabet = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ", 27 };
+static const string cyrillic_lower_alphabet = { "ÀÁÂÃ¥ÄÅªÆÇÈ²¯ÉÊËÌÍÎÏĞÑÒÓÔÕÖ×ØÙÜŞß", 34 };
+static const string cyrillic_upper_alphabet = { "àáâã´äåºæçè³¿éêëìíîïğñòóôõö÷øùüşÿ", 34 };
 
 
 strings string_split(string line, string separator)
