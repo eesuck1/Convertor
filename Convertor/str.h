@@ -1,6 +1,10 @@
 #ifndef STR_H
 #define STR_H
 
+#include <stdio.h>
+#include <string.h>
+#include <windows.h>
+
 #include "structures.h"
 #include "constants.h"
 #include "slice.h"
