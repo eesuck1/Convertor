@@ -202,4 +202,24 @@ void string_upper(string* line)
 	}
 }
 
+void string_lower(string* line)
+{
+	for (size_t index = 0; index < line->length; index++)
+	{
+		string sub_string = string_slice(*line, (slice) { index, index + 1, 1 });
+
+		size_t latin_index = string_find(latin_upper_alphabet, sub_string);
+		size_t cyrillic_index = string_find(cyrillic_upper_alphabet, sub_string);
+
+		if (latin_index != ULLONG_MAX)
+		{
+			line->symbols[index] = latin_lower_alphabet.symbols[latin_index];
+		}
+		if (cyrillic_index != ULLONG_MAX)
+		{
+			line->symbols[index] = cyrillic_lower_alphabet.symbols[cyrillic_index];
+		}
+	}
+}
+
 #endif // !STR_H
