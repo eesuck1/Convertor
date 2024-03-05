@@ -9,7 +9,7 @@ int main(void)
 	string file_path = to_string("C:\\Git\\Convertor\\Convertor\\Assets\\Tests\\first_test.tirac");
 	strings lines = get_lines(file_path);
 	
-	print_vector_default(lines);
+	print_strings_default(lines);
 
 	return 0;
 }

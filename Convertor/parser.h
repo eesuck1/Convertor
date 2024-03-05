@@ -2,7 +2,7 @@
 #define PARSER_H
 
 #include "utilities.h"
-#include "vector.h"
+#include "strings.h"
 
 strings get_lines(string file_path)
 {
@@ -16,7 +16,7 @@ strings get_lines(string file_path)
 		exit(-1);
 	}
 
-	strings result = create_vector(MAX_LINES_NUMBER);
+	strings result = create_strings(MAX_LINES_NUMBER);
 
 	char* symbols = "";
 	while (fgets(symbols, MAX_LINE_LENGTH, file_pointer))
@@ -28,7 +28,7 @@ strings get_lines(string file_path)
 
 		if (!string_in(line, whitespace))
 		{
-			vector_append(&result, line);
+			strings_append(&result, line);
 		}
 	}
 
