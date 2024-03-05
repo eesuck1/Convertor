@@ -1,10 +1,6 @@
 ﻿#ifndef UTILITIES_H
 #define UTILITIES_H
 
-#ifndef UNICODE
-#define UNICODE
-#endif // !UNICODE
-
 #define MAX_LINE_LENGTH 512
 #define MAX_LINES_NUMBER 2048
 
@@ -16,13 +12,6 @@
 #include "structures.h"
 #include "strings.h"
 #include "str.h"
-
-static const string punctuation = { "!#$%&'()*+,-/:;<=>?@[\\]^`{|}~", 30 };
-static const string whitespace = { " \t\n\r\v\f", 7 };
-static const string latin_lower_alphabet = { "abcdefghijklmnopqrstuvwxyz", 27 };
-static const string latin_upper_alphabet = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ", 27 };
-static const string cyrillic_lower_alphabet = { "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ", 34 };
-static const string cyrillic_upper_alphabet = { "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя", 34 };
 
 
 strings string_split(string line, string separator)

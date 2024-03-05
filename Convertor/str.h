@@ -2,6 +2,7 @@
 #define STR_H
 
 #include "structures.h"
+#include "constants.h"
 #include "slice.h"
 
 string to_string(const char* line)
@@ -176,5 +177,24 @@ void string_copy(string* source, string* destination)
 	}
 }
 
+void string_upper(string* line)
+{
+	for (size_t index = 0; index < line->length; index++)
+	{
+		string sub_string = string_slice(*line, (slice) { index, index + 1, 1 });
+
+		size_t latin_index = string_find(latin_lower_alphabet, sub_string);
+		size_t cyrillic_index = string_find(cyrillic_lower_alphabet, sub_string);
+
+		if (latin_index != ULLONG_MAX)
+		{
+			line->symbols[index] = latin_upper_alphabet.symbols[latin_index];
+		}
+		if (cyrillic_index != ULLONG_MAX)
+		{
+			line->symbols[index] = cyrillic_upper_alphabet.symbols[cyrillic_index];
+		}
+	}
+}
 
 #endif // !STR_H
