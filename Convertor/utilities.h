@@ -180,9 +180,9 @@ size_t string_count(string line, string sub_string)
 	return counter;
 }
 
-vector string_split(string line, string separator)
+string_vector string_split(string line, string separator)
 {
-	vector result = create_vector(MAX_LINE_LENGTH);
+	string_vector result = create_vector(MAX_LINE_LENGTH);
 	
 	size_t start_index = 0;
 	size_t end_index = line.length - 1;
@@ -225,7 +225,7 @@ vector string_split(string line, string separator)
 	return result;
 }
 
-void print_vector(vector vector, slice slice)
+void print_vector(string_vector vector, slice slice)
 {
 	if (vector.count == 0)
 	{
@@ -249,7 +249,7 @@ void print_vector(vector vector, slice slice)
 	}
 }
 
-void clear_vector(vector* vector)
+void clear_vector(string_vector* vector)
 {
 	for (size_t index = 0; index < vector->count; index++)
 	{
@@ -259,19 +259,19 @@ void clear_vector(vector* vector)
 	vector->count = 0;
 }
 
-void vector_pop(vector* vector)
+void vector_pop(string_vector* vector)
 {
 	vector->values[vector->count--] = empty_string(0);
 }
 
-slice get_default_slice(vector vector)
+slice get_default_slice(string_vector vector)
 {
 	slice slice = { 0, vector.count, 1 };
 
 	return slice;
 }
 
-void print_vector_default(vector vector)
+void print_vector_default(string_vector vector)
 {
 	print_vector(vector, get_default_slice(vector));
 }

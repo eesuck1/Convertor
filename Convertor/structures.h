@@ -16,6 +16,6 @@ typedef struct {
 	string* values;
 	size_t capacity;
 	size_t count;
-} vector;
+} string_vector;
 
 #endif // STRUCTURES_H
