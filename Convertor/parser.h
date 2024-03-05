@@ -4,7 +4,7 @@
 #include "utilities.h"
 #include "vector.h"
 
-string_vector get_lines(string file_path)
+strings get_lines(string file_path)
 {
 	FILE* file_pointer;
 	fopen_s(&file_pointer, file_path.symbols, "r");
@@ -16,7 +16,7 @@ string_vector get_lines(string file_path)
 		exit(-1);
 	}
 
-	string_vector result = create_vector(MAX_LINES_NUMBER);
+	strings result = create_vector(MAX_LINES_NUMBER);
 
 	char* symbols = "";
 	while (fgets(symbols, MAX_LINE_LENGTH, file_pointer))
@@ -35,6 +35,6 @@ string_vector get_lines(string file_path)
 	return result;
 }
 
-void translate(string_vector lines) {}
+void translate(strings lines) {}
 
 #endif // PARSER_H
