@@ -18,4 +18,10 @@ typedef struct {
 	size_t count;
 } strings;
 
+typedef struct {
+	strings* values;
+	size_t capacity;
+	size_t count;
+} graph;
+
 #endif // STRUCTURES_H

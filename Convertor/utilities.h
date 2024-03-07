@@ -21,14 +21,14 @@ strings string_split(string line, string separator)
 	size_t start_index = 0;
 	size_t end_index = line.length - 1;
 
-	if (!string_in(line, separator))
+	if (!string_in(separator, line))
 	{
 		strings_append(&result, line);
 
 		return result;
 	}
 
-	size_t counter = string_count(line, separator);
+	size_t counter = string_count(separator, line);
 
 	for (size_t index = 0; index < line.length; index++)
 	{
@@ -59,7 +59,7 @@ strings string_split(string line, string separator)
 	return result;
 }
 
-slice get_default_slice(strings strings)
+slice default_slice(strings strings)
 {
 	slice slice = { 0, strings.count, 1 };
 
@@ -68,7 +68,7 @@ slice get_default_slice(strings strings)
 
 void print_strings_default(strings strings)
 {
-	print_strings(strings, get_default_slice(strings));
+	print_strings(strings, default_slice(strings));
 }
 
 void clear_strings(strings* strings)

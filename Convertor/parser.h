@@ -3,6 +3,7 @@
 
 #include "utilities.h"
 #include "strings.h"
+#include "graph.h"
 
 strings get_lines(string file_path)
 {
@@ -35,6 +36,51 @@ strings get_lines(string file_path)
 	return result;
 }
 
-void translate(strings lines) {}
+strings skip_comments(strings line)
+{
+	strings result = create_strings(MAX_LINE_LENGTH);
+
+	bool commenting = false;
+
+	for (size_t index = 0; index < line.count; index++)
+	{
+		string symbol = strings_at(line, index);
+
+		if (string_equal(symbol, comment_string))
+		{
+			commenting = !commenting;
+
+			continue;
+		}
+
+		if (!commenting)
+		{
+			strings_append(&result, symbol);
+		}
+	}
+
+	return result;
+}
+
+graph get_graph(strings lines) 
+{
+	string separator = to_string(" ");
+	graph result = create_graph(lines.count);
+
+	for (size_t index = 0; index < lines.count; index++)
+	{
+		strings line = string_split(strings_at(lines, index), separator);
+		strings without_comments = skip_comments(line);
+
+		// print_strings(without_comments, default_slice(without_comments));
+
+		if (without_comments.count > 0)
+		{
+			graph_append(&result, without_comments);
+		}
+	}
+
+	return result;
+}
 
 #endif // PARSER_H

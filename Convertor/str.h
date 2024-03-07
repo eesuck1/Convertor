@@ -99,8 +99,6 @@ bool string_in(string sub_string, string line)
 
 void string_append(string* line, char symbol)
 {
-	assert(false && "Not Properly Implemented Right Now!");
-
 	line->symbols[line->length++ - 1] = symbol;
 }
 
@@ -150,7 +148,7 @@ void string_replace(string* line, string original, string new)
 	}
 }
 
-size_t string_count(string line, string sub_string)
+size_t string_count(string sub_string, string line)
 {
 	size_t counter = 0;
 
