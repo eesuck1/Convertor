@@ -36,7 +36,7 @@ void full_vector(strings* strings, string value)
 
 string strings_at(strings strings, size_t index)
 {
-	if (index > strings.count || index < 0)
+	if (index > strings.count)
 	{
 		printf("Index is out of bounds\n");
 
@@ -48,7 +48,7 @@ string strings_at(strings strings, size_t index)
 
 void strings_set(strings* strings, size_t index, string value)
 {
-	if (index > strings->count || index < 0)
+	if (index > strings->count)
 	{
 		printf("Index is out of bounds\n");
 

@@ -12,14 +12,15 @@ strings get_lines(string file_path)
 
 	if (file_pointer == NULL)
 	{
-		printf("File Reading is Failed %d\n", GetLastError());
+		printf("File Reading is Failed %lu\n", GetLastError());
 
 		exit(-1);
 	}
 
 	strings result = create_strings(MAX_LINES_NUMBER);
 
-	char* symbols = "";
+	char symbols[MAX_LINE_LENGTH];
+
 	while (fgets(symbols, MAX_LINE_LENGTH, file_pointer))
 	{
 		string chars = to_string(symbols);
