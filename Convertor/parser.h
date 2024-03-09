@@ -63,6 +63,11 @@ strings skip_comments(strings line)
 	return result;
 }
 
+strings parse_expression(strings expression)
+{
+
+}
+
 graph get_graph(strings lines) 
 {
 	string separator = to_string(" ");

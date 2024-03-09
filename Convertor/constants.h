@@ -12,6 +12,7 @@ static const string latin_upper_alphabet = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ", 27 };
 static const string cyrillic_lower_alphabet = { "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ", 34 };
 static const string cyrillic_upper_alphabet = { "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя", 34 };
 static const string comment_string = { "--", 2 };
+static const string operators = { "+-*/", 6 };
 
 #endif // !CONSTANTS_H
 

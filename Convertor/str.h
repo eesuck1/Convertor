@@ -84,7 +84,7 @@ bool string_in(string sub_string, string line)
 		return false;
 	}
 
-	for (size_t index = 0; index < line.length - sub_string.length; index++)
+	for (size_t index = 0; index <= line.length - sub_string.length; index++)
 	{
 		slice slice = { index, sub_string.length + index, 1 };
 

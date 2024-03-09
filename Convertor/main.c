@@ -2,6 +2,7 @@
 
 #include "parser.h"
 #include "utilities.h"
+#include "postfix.h"
 
 
 int main(void)
@@ -11,10 +12,8 @@ int main(void)
 
 	graph parsed = get_graph(lines);
 
-	for (size_t index = 0; index < lines.count; index++)
-	{
-		print_strings(parsed.values[index], default_slice(parsed.values[index]));
-	}
+    strings expression = strings_reverse(parsed.values[1]);
+    to_postfix(expression);
 
-	return 0;
+    return 0;
 }

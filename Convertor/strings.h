@@ -38,7 +38,7 @@ string strings_at(strings strings, size_t index)
 {
 	if (index > strings.count)
 	{
-		printf("Index is out of bounds\n");
+        printf("Index %zu is out of %zu Count bounds\n", index, strings.count);
 
 		exit(-1);
 	}
@@ -50,7 +50,7 @@ void strings_set(strings* strings, size_t index, string value)
 {
 	if (index > strings->count)
 	{
-		printf("Index is out of bounds\n");
+		printf("Index %zu is out of %zu Count bounds\n", index, strings->count);
 
 		exit(-1);
 	}
@@ -97,6 +97,11 @@ void print_strings(strings strings, slice slice)
 	{
 		printf("Strings[%zu] = %s\n", index, strings.values[index].symbols);
 	}
+}
+
+string strings_top(strings strings)
+{
+    return strings.values[strings.count - 1];
 }
 
 #endif // !STRINGS_H
