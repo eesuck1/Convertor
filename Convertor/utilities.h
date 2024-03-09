@@ -9,11 +9,16 @@
 #define MAX_LINES_NUMBER 2048
 #endif // MAX_LINES_NUMBER
 
+#ifndef DECIMAL_PLACES
+#define DECIMAL_PLACES 5
+#endif
+
 #include <stdbool.h>
 #include <string.h>
 #include <windows.h>
 #include <assert.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "structures.h"
 #include "strings.h"
@@ -165,6 +170,16 @@ double string_to_double(string value)
 
         exit(-1);
     }
+
+    return result;
+}
+
+string double_to_string(double value)
+{
+    size_t length = (size_t)log10(value) + 2 + DECIMAL_PLACES;
+    string result = empty_string(length);
+
+    snprintf(result.symbols, length, "%f",  value);
 
     return result;
 }

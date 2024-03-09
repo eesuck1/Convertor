@@ -92,20 +92,20 @@ strings to_postfix(strings expression)
     return output;
 }
 
-double calculate_binary(string first, string second, string operator)
+string calculate_binary(string first, string second, string operator)
 {
     char symbol = operator.symbols[0];
 
     switch (symbol)
     {
         case '+':
-            return string_to_double(first) + string_to_double(second);
+            return double_to_string(string_to_double(first) + string_to_double(second));
         case '-':
-            return string_to_double(first) - string_to_double(second);
+            return double_to_string(string_to_double(first) - string_to_double(second));
         case '*':
-            return string_to_double(first) * string_to_double(second);
+            return double_to_string(string_to_double(first) * string_to_double(second));
         case '/':
-            return string_to_double(first) / string_to_double(second);
+            return double_to_string(string_to_double(first) / string_to_double(second));
         default:
             printf("%s is not an operator!\n", operator.symbols);
 
