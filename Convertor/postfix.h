@@ -7,6 +7,7 @@
 #include "strings.h"
 #include "utilities.h"
 
+
 typedef enum {
     plus = 1,
     minus = 1,
@@ -49,9 +50,12 @@ strings to_postfix(strings expression)
     string opened = to_string("(");
     string closed = to_string(")");
 
-    while (expression.count > 0)
+    strings copy = create_strings(expression.capacity);
+    strings_copy(expression, &copy);
+
+    while (copy.count > 0)
     {
-        string unit = strings_pop(&expression);
+        string unit = strings_pop(&copy);
 
         if (is_number(unit))
         {
@@ -92,22 +96,24 @@ strings to_postfix(strings expression)
     return output;
 }
 
-string calculate_binary(string first, string second, string operator)
+string calculate_binary(string first, string second, string binary)
 {
-    char symbol = operator.symbols[0];
+    char symbol = binary.symbols[0];
+    double first_number = string_to_double(first);
+    double second_number = string_to_double(second);
 
     switch (symbol)
     {
         case '+':
-            return double_to_string(string_to_double(first) + string_to_double(second));
+            return double_to_string(first_number + second_number);
         case '-':
-            return double_to_string(string_to_double(first) - string_to_double(second));
+            return double_to_string(first_number - second_number);
         case '*':
-            return double_to_string(string_to_double(first) * string_to_double(second));
+            return double_to_string(first_number * second_number);
         case '/':
-            return double_to_string(string_to_double(first) / string_to_double(second));
+            return double_to_string(first_number / second_number);
         default:
-            printf("%s is not an operator!\n", operator.symbols);
+            printf("%s is not an operator!\n", binary.symbols);
 
             exit(-1);
     }
@@ -115,7 +121,40 @@ string calculate_binary(string first, string second, string operator)
 
 double calculate_postfix(strings expression)
 {
+    size_t pointer = 0;
 
+    strings copy = create_strings(expression.capacity);
+    strings_copy(expression, &copy);
+
+    while (copy.count > 1)
+    {
+        string token = strings_at(copy, pointer);
+
+        if (is_number(token))
+        {
+            pointer++;
+        }
+        else if (is_operator(token))
+        {
+            string first = strings_pop_at(&copy, pointer - 2);
+            string second = strings_pop_at(&copy, pointer - 2);
+
+            string binary = strings_at(copy, pointer - 2);
+
+            string result = calculate_binary(first, second, binary);
+            strings_set(&copy, pointer - 2, result);
+
+            pointer -= 1;
+        }
+        else
+        {
+            printf("Unknown Symbol!\n");
+
+            exit(-1);
+        }
+    }
+
+    return string_to_double(strings_top(copy));
 }
 
 #endif // POSTFIX_H

@@ -10,7 +10,7 @@
 #endif // MAX_LINES_NUMBER
 
 #ifndef DECIMAL_PLACES
-#define DECIMAL_PLACES 5
+#define DECIMAL_PLACES 15
 #endif
 
 #include <stdbool.h>
@@ -23,6 +23,8 @@
 #include "structures.h"
 #include "strings.h"
 #include "str.h"
+#include "variable.h"
+#include "variables.h"
 
 
 strings string_split(string line, string separator)
@@ -129,7 +131,13 @@ strings strings_reverse(strings original)
 
 bool is_number(string line)
 {
+    if (line.length <= 1 && !isdigit(line.symbols[0]))
+    {
+        return false;
+    }
+
     bool dot = false;
+    bool sign = false;
 
     for (size_t index = 0; index < line.length; index++)
     {
@@ -143,6 +151,16 @@ bool is_number(string line)
             }
 
             dot = true;
+        }
+
+        if (symbol == '-' || symbol == '+')
+        {
+            if (sign)
+            {
+                return false;
+            }
+
+            sign = true;
         }
 
         if (!isdigit(symbol) && !dot)
@@ -161,12 +179,12 @@ bool is_operator(string line)
 
 double string_to_double(string value)
 {
-    char* end_pointer = NULL;
+    char** end_pointer = NULL;
     double result = strtod(value.symbols, end_pointer);
 
     if (end_pointer != NULL)
     {
-        printf("Error while converting %s to double at symbol %c", value.symbols, *end_pointer);
+        printf("Error while converting %s to double at symbol %c", value.symbols, **end_pointer);
 
         exit(-1);
     }
@@ -176,12 +194,32 @@ double string_to_double(string value)
 
 string double_to_string(double value)
 {
-    size_t length = (size_t)log10(value) + 2 + DECIMAL_PLACES;
+    size_t length = (size_t)log10(fabs(value)) + 2 + DECIMAL_PLACES;
     string result = empty_string(length);
 
     snprintf(result.symbols, length, "%f",  value);
 
     return result;
+}
+
+void strings_copy(strings source, strings* destination)
+{
+    if (source.count > destination->capacity)
+    {
+        printf("%zu values can not fit in %zu capacity", source.count, destination->capacity);
+
+        exit(-1);
+    }
+
+    destination->count = source.count;
+
+    for (size_t index = 0; index < source.count; index++)
+    {
+        string source_string = strings_at(source, index);
+        strings_set(destination, index, empty_string(source_string.length));
+
+        string_copy(source_string, destination->values[index]);
+    }
 }
 
 #endif // UTILITIES_H

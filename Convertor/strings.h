@@ -7,6 +7,7 @@
 #include "structures.h"
 #include "slice.h"
 
+
 strings create_strings(size_t capacity)
 {
 	strings strings =
@@ -19,12 +20,12 @@ strings create_strings(size_t capacity)
 	return strings;
 }
 
-bool vector_is_empty(strings* strings)
+bool strings_is_empty(strings* strings)
 {
 	return strings->count == 0;
 }
 
-void full_vector(strings* strings, string value)
+void full_strings(strings* strings, string value)
 {
 	for (size_t index = 0; index < strings->capacity; index++)
 	{

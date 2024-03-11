@@ -4,6 +4,8 @@
 #include "utilities.h"
 #include "strings.h"
 #include "graph.h"
+#include "postfix.h"
+
 
 strings get_lines(string file_path)
 {
@@ -26,7 +28,7 @@ strings get_lines(string file_path)
 		string chars = to_string(symbols);
 		string line = empty_string(chars.length);
 
-		string_copy(&chars, &line);
+		string_copy(chars, line);
 
 		if (!string_in(line, whitespace))
 		{
@@ -63,9 +65,16 @@ strings skip_comments(strings line)
 	return result;
 }
 
-strings parse_expression(strings expression)
+string parse_expression(strings expression)
 {
+    strings reversed = strings_reverse(expression);
+    strings postfix = to_postfix(reversed);
 
+    print_strings(postfix, default_slice(postfix));
+
+    double calculated = calculate_postfix(postfix);
+
+    return double_to_string(calculated);
 }
 
 graph get_graph(strings lines) 
@@ -88,5 +97,7 @@ graph get_graph(strings lines)
 
 	return result;
 }
+
+
 
 #endif // PARSER_H

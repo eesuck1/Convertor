@@ -10,6 +10,7 @@
 #include "constants.h"
 #include "slice.h"
 
+
 string to_string(const char* line)
 {
 	string string = { line, strlen(line) };
@@ -104,8 +105,6 @@ void string_append(string* line, char symbol)
 
 void string_pop(string* line)
 {
-	// assert(false && "Not Properly Implemented Right Now!");
-
 	line->symbols[line->length--] = 0;
 }
 
@@ -165,19 +164,16 @@ size_t string_count(string sub_string, string line)
 	return counter;
 }
 
-void string_copy(string* source, string* destination)
+void string_copy(string source, string destination)
 {
-	if (source->length != destination->length)
+	if (source.length != destination.length)
 	{
 		printf("String Lengths are not Consistent!\n");
 
 		exit(-1);
 	}
 
-	for (size_t index = 0; index < source->length; index++)
-	{
-		destination->symbols[index] = source->symbols[index];
-	}
+    memcpy(destination.symbols, source.symbols, source.length);
 }
 
 void string_upper(string* line)

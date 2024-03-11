@@ -3,6 +3,7 @@
 
 #include "structures.h"
 
+
 size_t slice_length(slice slice)
 {
 	double fractional = (double)(slice.high - slice.low) / (double)slice.step;

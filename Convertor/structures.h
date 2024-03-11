@@ -24,4 +24,16 @@ typedef struct {
 	size_t count;
 } graph;
 
+typedef struct {
+    string type;
+    string name;
+    string value;
+} variable;
+
+typedef struct {
+    variable* variables;
+    size_t capacity;
+    size_t count;
+} variables;
+
 #endif // STRUCTURES_H
